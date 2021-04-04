@@ -46,6 +46,14 @@
             <%= link_to "All Users", users_path, class: "nav-link" %>
           </li>
         <% end %>
+        <% if user_signed_in? %>
+          <li class="nav-item">
+            <%= link_to cart_path, class: "nav-link" do%>
+              My Cart
+              (<span class="cart-count"><%=current_user.cart_count%></span>)
+            <% end %>
+          </li>
+        <% end %>
       </ul>
       <ul class="navbar-nav">
         <% if user_signed_in? %>

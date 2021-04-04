@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'carts/show'
   root to: "items#index"
   get "users", to: "users#index"
   
@@ -7,6 +8,11 @@ Rails.application.routes.draw do
   
   post "make_clerk", to: "users#make_clerk"
   post "remove_clerk", to: "users#remove_clerk"
+
+  resource :cart, only: [:show] do
+    put 'add/:id', to: 'carts#add', as: :add_to
+    put 'remove/:id', to: 'carts#remove', as: :remove_from
+  end
 
   devise_for :users
   devise_scope :user do

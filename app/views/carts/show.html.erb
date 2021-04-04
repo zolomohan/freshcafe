@@ -1,0 +1,7 @@
+<div id="mycart" class="small-10 small-centered medium-8 large-8 column">
+  <h1 class="mt-5 mb-4">My Cart (<span class="cart-count"><%=current_user.cart_count%></span>)</h1>
+  <%= render 'list', items:@cart_items %>
+  <div class="ui secondary button mt-3">
+    Proceed to Checkout
+  </div>
+</div>

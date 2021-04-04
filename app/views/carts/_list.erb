@@ -1,0 +1,21 @@
+<table class="ui celled table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Price</th>
+        <th colspan="4"></th>
+    </tr></thead>
+    <tbody>
+      <% items.each do |item| %>
+      <tr>
+        <td><%= item.name %></td>
+        <td><%= item.price %></td>
+        <td>
+          <%if user_signed_in?%>
+            <%=link_to "Remove From Cart", remove_from_cart_path(item), method: :put, class: "button" %>
+          <%end%>
+        </td>
+        <td><%= link_to 'Show', item, style: "text-decoration: none" %></td>
+      </tr>
+    <% end %>
+  </table>
