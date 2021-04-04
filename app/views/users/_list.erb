@@ -9,8 +9,11 @@
       <tr>
         <td><%= user.email %></td>
         <td>
-          <%= link_to user.admin ? 'Remove Admin' : 'Make Admin', users_path, data: { confirm: 'Are you sure?' }, style: "text-decoration: none" %></td>
-        <td><%= link_to 'Make Clerk', users_path(user), data: { confirm: 'Are you sure?' }, style: "text-decoration: none" %></td>
+          <%= button_to user.admin ? 'Remove Admin' : 'Make Admin', user.admin ? remove_admin_path : make_admin_path, params: {id: user.id}, data: { confirm: 'Are you sure?' }, class: "btn btn-link", style: "text-decoration: none" %>
+        </td>
+        <td>
+          <%= button_to user.clerk ? 'Remove Clerk' : 'Make Clerk', user.clerk ? remove_clerk_path : make_clerk_path, params: {id: user.id}, data: { confirm: 'Are you sure?' }, class: "btn btn-link", style: "text-decoration: none" %>
+        </td>
         <td><%= link_to 'Destroy', users_path(user), method: :delete, data: { confirm: 'Are you sure?' }, style: "text-decoration: none" %></td>
       </tr>
     <% end %>
