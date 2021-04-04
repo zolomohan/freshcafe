@@ -10,29 +10,29 @@
       </ul>
     </div>
   <% end %>
+  
+  <div class="ui fluid input my-3">
+    <%= form.text_field :name, class: "ui fluid input", placeholder: "Name" %>
+  </div>  
 
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name %>
+  <div class="ui fluid input my-3">
+    <%= form.number_field :price, placeholder: "Price" %>
   </div>
 
-  <div class="field">
-    <%= form.label :price %>
-    <%= form.number_field :price %>
-  </div>
-
-  <div class="field">
-    <%= form.label :description %>
-    <%= form.text_area :description %>
+  <div class="ui form my-3">
+    <%= form.text_area :description, placeholder: "Description" %>
   </div>
 
   <div class="field">
     <%= form.collection_check_boxes :category_ids, Category.all, :id, :name do |cb| %>
-      <% cb.label {cb.check_box + cb.text} %>
-    <% end %>
+    <div class="ui checkbox">
+      <%= cb.check_box %>
+      <label class="me-3"><%= cb.text %></label>
+    </div>
+      <% end %>
   </div>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit class: "ui button mt-4" %>
   </div>
 <% end %>

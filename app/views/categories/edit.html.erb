@@ -1,6 +1,6 @@
-<h1>Editing Category</h1>
+<h1 class="mt-5 mb-4">Editing Category</h1>
 
 <%= render 'form', category: @category %>
 
-<%= link_to 'Show', @category %> |
-<%= link_to 'Back', categories_path %>
+<%= link_to 'Show', @category, class: "ui button secondary mt-4" %>
+<%= link_to 'Back', categories_path, class: "ui button secondary mt-4" %>

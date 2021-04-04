@@ -11,12 +11,11 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name %>
+  <div class="ui fluid input">
+    <%= form.text_field :name, placeholder: "Name" %>
   </div>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit class: "ui button mt-4" %>
   </div>
 <% end %>
