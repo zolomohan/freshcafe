@@ -11,7 +11,7 @@
       <% items.each do |item| %>
       <tr>
         <td><%= item.name %></td>
-        <td><%= item.price %></td>
+        <td>₹ <%= item.price %></td>
         <td><%= item.description %></td>
         <td>
           <% item.category.each_with_index do |category, index|%>

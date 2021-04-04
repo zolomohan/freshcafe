@@ -9,7 +9,7 @@
       <% items.each do |item| %>
       <tr>
         <td><%= item.name %></td>
-        <td><%= item.price %></td>
+        <td>₹ <%= item.price %></td>
         <td>
           <%if user_signed_in?%>
             <%=link_to "Remove From Cart", remove_from_cart_path(item), method: :put, class: "button" %>
