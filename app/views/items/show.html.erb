@@ -15,5 +15,12 @@
   <%= @item.description %>
 </p>
 
+<p>
+  <strong><%= "Category".pluralize(@item.category.length)%>:</strong>
+  <% @item.category.each_with_index do |category, index|%>
+    <%= "#{category.name}" %><%= " | " if index != @item.category.length - 1 %>
+  <% end %>
+</p>
+
 <%= link_to 'Edit', edit_item_path(@item) %> |
 <%= link_to 'Back', items_path %>
