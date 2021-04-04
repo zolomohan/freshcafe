@@ -1,0 +1,17 @@
+<table class="ui celled table">
+    <thead>
+      <tr>
+        <th>Email</th>
+        <th colspan="3"></th>
+    </tr></thead>
+    <tbody>
+      <% users.each do |user| %>
+      <tr>
+        <td><%= user.email %></td>
+        <td>
+          <%= link_to user.admin ? 'Remove Admin' : 'Make Admin', users_path, data: { confirm: 'Are you sure?' }, style: "text-decoration: none" %></td>
+        <td><%= link_to 'Make Clerk', users_path(user), data: { confirm: 'Are you sure?' }, style: "text-decoration: none" %></td>
+        <td><%= link_to 'Destroy', users_path(user), method: :delete, data: { confirm: 'Are you sure?' }, style: "text-decoration: none" %></td>
+      </tr>
+    <% end %>
+  </table>
