@@ -15,12 +15,12 @@
         <td><%= item.description %></td>
         <td>
           <% item.category.each_with_index do |category, index|%>
-            <%= "#{category.name}" %><%= " | " if index != item.category.length - 1 %>
+          <%= link_to "#{category.name}", category_path(category), class: "ui black label", style: "text-decoration: none" %>
           <% end %>
         </td>
-        <td><%= link_to 'Show', item %></td>
-        <td><%= link_to 'Edit', edit_item_path(item) %></td>
-        <td><%= link_to 'Destroy', item, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Show', item, style: "text-decoration: none" %></td>
+        <td><%= link_to 'Edit', edit_item_path(item), style: "text-decoration: none" %></td>
+        <td><%= link_to 'Destroy', item, method: :delete, data: { confirm: 'Are you sure?' }, style: "text-decoration: none" %></td>
       </tr>
     <% end %>
   </table>

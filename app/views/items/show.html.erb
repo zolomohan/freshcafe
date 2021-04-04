@@ -1,26 +1,21 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @item.name %>
-</p>
+<h2 class="mt-5"><%= @item.name %></h2>
 
-<p>
-  <strong>Price:</strong>
-  <%= @item.price %>
-</p>
-
-<p>
-  <strong>Description:</strong>
+<p class="lead mt-3 text-muted">
   <%= @item.description %>
 </p>
 
-<p>
-  <strong><%= "Category".pluralize(@item.category.length)%>:</strong>
-  <% @item.category.each_with_index do |category, index|%>
-    <%= "#{category.name}" %><%= " | " if index != @item.category.length - 1 %>
-  <% end %>
+<p class="lead">
+  ₹ <%= @item.price %>
 </p>
 
-<%= link_to 'Edit', edit_item_path(@item) %> |
-<%= link_to 'Back', items_path %>
+<div class="mb-3">
+  <% @item.category.each_with_index do |category, index|%>
+    <%= link_to "#{category.name}", category_path(category), class: "ui black label", style: "text-decoration: none" %>
+  <% end %>
+</div>
+
+
+<%= link_to 'Edit', edit_item_path(@item), class: "ui button" %>
+<%= link_to 'Back', items_path, class: "ui button" %>

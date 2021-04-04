@@ -8,9 +8,9 @@
       <% items.each do |item| %>
       <tr>
         <td><%= item.name %></td>
-        <td><%= link_to 'Show', item %></td>
-        <td><%= link_to 'Edit', edit_category_path(item) %></td>
-        <td><%= link_to 'Destroy', item, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Show', item, style: "text-decoration: none" %></td>
+        <td><%= link_to 'Edit', edit_category_path(item), style: "text-decoration: none" %></td>
+        <td><%= link_to 'Destroy', item, method: :delete, data: { confirm: 'Are you sure?' }, style: "text-decoration: none" %></td>
       </tr>
     <% end %>
   </table>
