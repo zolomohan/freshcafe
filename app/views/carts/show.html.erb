@@ -1,6 +1,6 @@
 <div id="mycart" class="small-10 small-centered medium-8 large-8 column">
   <h1 class="mt-5 mb-4">My Cart (<span class="cart-count"><%=current_user.cart_count%></span>)</h1>
-  <%= render 'list', items:@cart_items %>
+  <%= render 'list', cart_items:@items %>
   <p class="lead my-5" style="font-size: 25px;">Total Price: ₹ <%= @cart_items.reduce(0) {|sum, num| sum + num.price} %></p>
   <div class="ui secondary button">
     Proceed to Checkout

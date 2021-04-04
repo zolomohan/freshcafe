@@ -3,19 +3,20 @@
       <tr>
         <th>Name</th>
         <th>Price</th>
+        <th>Quantity</th>
         <th colspan="4"></th>
     </tr></thead>
     <tbody>
-      <% items.each do |item| %>
+      <% cart_items.each do |cart_item| %>
       <tr>
-        <td><%= item.name %></td>
-        <td>₹ <%= item.price %></td>
-        <td>
-          <%if user_signed_in?%>
-            <%=link_to "Remove From Cart", remove_from_cart_path(item), method: :put, class: "button" %>
-          <%end%>
-        </td>
-        <td><%= link_to 'Show', item, style: "text-decoration: none" %></td>
+        <td><%= cart_item[:item].name %></td>
+        <td>₹ <%= cart_item[:item].price %></td>
+        <td><%= cart_item[:quantity] %></td>
+        <td><%=link_to "Add 1", increase_quantity_cart_path(cart_item[:item]), method: :put, class: "button" %></td>
+        <td><%=link_to "Reduce 1", decrease_quantity_cart_path(cart_item[:item]), method: :put, class: "button" %></td>
+        <td><%=link_to "Remove From Cart", remove_from_cart_path(cart_item[:item]), method: :put, class: "button" %></td>
+        <td><%= link_to 'Show', cart_item[:item], style: "text-decoration: none" %></td>
       </tr>
     <% end %>
+    </tbody>
   </table>

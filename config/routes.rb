@@ -12,6 +12,8 @@ Rails.application.routes.draw do
   resource :cart, only: [:show] do
     put 'add/:id', to: 'carts#add', as: :add_to
     put 'remove/:id', to: 'carts#remove', as: :remove_from
+    put 'increase/:id', to: 'carts#increase_quantity', as: :increase_quantity
+    put 'decrease/:id', to: 'carts#decrease_quantity', as: :decrease_quantity
   end
 
   devise_for :users
