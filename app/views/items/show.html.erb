@@ -16,6 +16,7 @@
   <% end %>
 </div>
 
-
-<%= link_to 'Edit', edit_item_path(@item), class: "ui button" %>
+<% if user_signed_in? &&  current_user.admin? %>
+  <%= link_to 'Edit', edit_item_path(@item), class: "ui button" %>
+<% end %>
 <%= link_to 'Back', items_path, class: "ui button" %>

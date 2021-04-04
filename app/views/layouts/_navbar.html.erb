@@ -45,7 +45,7 @@
       <ul class="navbar-nav">
         <% if user_signed_in? %>
         <li class="nav-item">
-          <%= link_to "Your Profile", edit_user_registration_path, class: "nav-link" %>
+          <%= link_to current_user.email, edit_user_registration_path, class: "nav-link" %>
         </li>
         <li class="nav-item">
           <%= link_to "Logout", logout_path, class: "nav-link", method: :delete %>

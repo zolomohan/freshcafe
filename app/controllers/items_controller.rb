@@ -1,5 +1,7 @@
 class ItemsController < ApplicationController
   before_action :set_item, only: %i[ show edit update destroy ]
+  before_action :require_login, except: [:index, :show]
+  before_action :require_admin, except: [:index, :show]
 
   # GET /items or /items.json
   def index

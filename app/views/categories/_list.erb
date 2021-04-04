@@ -9,8 +9,10 @@
       <tr>
         <td><%= item.name %></td>
         <td><%= link_to 'Show', item, style: "text-decoration: none" %></td>
-        <td><%= link_to 'Edit', edit_category_path(item), style: "text-decoration: none" %></td>
-        <td><%= link_to 'Destroy', item, method: :delete, data: { confirm: 'Are you sure?' }, style: "text-decoration: none" %></td>
+        <% if user_signed_in? && current_user.admin? %>
+          <td><%= link_to 'Edit', edit_category_path(item), style: "text-decoration: none" %></td>
+          <td><%= link_to 'Destroy', item, method: :delete, data: { confirm: 'Are you sure?' }, style: "text-decoration: none" %></td>
+        <% end %>
       </tr>
     <% end %>
   </table>

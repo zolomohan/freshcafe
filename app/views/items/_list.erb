@@ -5,7 +5,7 @@
         <th>Price</th>
         <th>Description</th>
         <th>Categories</th>
-        <th colspan="3"></th>
+        <th colspan="4"></th>
     </tr></thead>
     <tbody>
       <% items.each do |item| %>
@@ -18,9 +18,12 @@
           <%= link_to "#{category.name}", category_path(category), class: "ui black label", style: "text-decoration: none" %>
           <% end %>
         </td>
+        <td><%= link_to 'Add to Cart', item, style: "text-decoration: none" %></td>
         <td><%= link_to 'Show', item, style: "text-decoration: none" %></td>
-        <td><%= link_to 'Edit', edit_item_path(item), style: "text-decoration: none" %></td>
-        <td><%= link_to 'Destroy', item, method: :delete, data: { confirm: 'Are you sure?' }, style: "text-decoration: none" %></td>
+        <% if user_signed_in? && current_user.admin? %>
+          <td><%= link_to 'Edit', edit_item_path(item), style: "text-decoration: none" %></td>
+          <td><%= link_to 'Destroy', item, method: :delete, data: { confirm: 'Are you sure?' }, style: "text-decoration: none" %></td>
+        <% end %>
       </tr>
     <% end %>
   </table>

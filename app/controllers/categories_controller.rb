@@ -1,5 +1,7 @@
 class CategoriesController < ApplicationController
   before_action :set_category, only: %i[ show edit update destroy ]
+  before_action :require_login, except: [:index, :show]
+  before_action :require_admin, except: [:index, :show]
 
   # GET /categories or /categories.json
   def index
