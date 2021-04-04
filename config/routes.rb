@@ -9,6 +9,8 @@ Rails.application.routes.draw do
   post "make_clerk", to: "users#make_clerk"
   post "remove_clerk", to: "users#remove_clerk"
 
+  post "order", to: "orders#create"
+
   resource :cart, only: [:show] do
     put 'add/:id', to: 'carts#add', as: :add_to
     put 'remove/:id', to: 'carts#remove', as: :remove_from
