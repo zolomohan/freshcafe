@@ -1,3 +1,4 @@
-<h1 class="my-5"><%= @category.name %></h1>
+<h1 class="mt-4 "><%= "#{@category.name} (#{@category.items.count})" %></h1>
+<hr class="mb-5">
 
 <%= render 'items/list', items:@category.items %>

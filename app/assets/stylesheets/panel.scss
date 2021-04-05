@@ -5,12 +5,13 @@
   margin-right: 40px;
   display: flex;
   flex-direction: column;
-  background-color: #fff;
+  background-color: rgb(250, 250, 250);
   height: 70px;
   width: 400px;
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
-  padding: 0px 30px;
+  padding-left: 30px;
+  padding-right: 10px;
   transition: height 0.1s linear;
   box-shadow: -1px -1px 4px 0px rgba(141, 141, 141, 0.75);
   -webkit-box-shadow: -1px -1px 4px 0px rgba(141, 141, 141, 0.75);
@@ -22,6 +23,7 @@
     align-items: center;
     justify-content: space-between;
     width: 100%;
+    padding-right: 10px;
 
     i {
       font-size: 20px;
@@ -58,5 +60,9 @@
         margin-top: 5px;
       }
     }
+  }
+
+  #panel-footer {
+    padding-right: 20px;
   }
 }

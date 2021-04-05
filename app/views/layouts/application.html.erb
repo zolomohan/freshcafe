@@ -25,36 +25,7 @@
   </head>
 
   <body>
-    <div class="sidenav">
-      <div>
-        <div class="brand">
-          <i class="fas fa-utensils"></i>
-          <p>Freshcafe</p>
-        </div>
-        <hr>
-        <%= link_to "All Items", root_path %>
-        <h2>Categories</h2>
-        <% Category.all.each do |category| %>
-        <%= link_to category.name, category_path(category.id) %>
-        <% end %>
-        <div id="more-categories">
-          <%= link_to "More", categories_path %>
-          <i class="fas fa-chevron-right"></i>
-        </div>
-      </div>
-
-      <div>
-        <div id="auth-links">
-          <% if user_signed_in? %>
-          <%= link_to "Profile", "/users/#{current_user.id}" %>
-          <%= link_to "Logout", logout_path, class: "nav-link", method: :delete %>
-          <% else %>
-          <%= link_to "Login", login_path %>
-          <%= link_to "Signup", signup_path %>
-          <% end %>
-        </div>
-      </div>
-    </div>
+    <%= render 'layouts/sidenav' %>
 
     <div class="main">
       <div class="px-5">
