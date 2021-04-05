@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   get 'carts/show'
   root to: "items#index"
   get "users", to: "users#index"
+  get "users/:id", to: "users#show"
   
   post "make_admin", to: "users#make_admin"
   post "remove_admin", to: "users#remove_admin"
@@ -19,18 +20,19 @@ Rails.application.routes.draw do
     put 'decrease/:id', to: 'carts#decrease_quantity', as: :decrease_quantity
   end
 
-  devise_for :users
-  devise_scope :user do
-    get "login", to: "devise/sessions#new"
-    delete "logout", to: "devise/sessions#destroy"
-    get "signup", to: "devise/registrations#new"
-  end
-
   resources :categories
   resources :items, except: [:show]
   resources :orders, only: [:create, :index, :show] do
     put 'deliver', to: 'orders#mark_delivered', as: 'deliver'
     put 'not_deliver', to: 'orders#mark_not_delivered'
+  end
+
+  devise_for :users
+  devise_scope :user do
+    get "login", to: "devise/sessions#new"
+    delete "logout", to: "devise/sessions#destroy"
+    get "signup", to: "devise/registrations#new"
+    get "edit_account", to: "devise/registrations#edit"
   end
   
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

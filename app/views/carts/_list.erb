@@ -12,10 +12,9 @@
         <td><%= cart_item[:item].name %></td>
         <td>₹ <%= cart_item[:item].price %></td>
         <td><%= cart_item[:quantity] %></td>
-        <td><%=link_to "Add 1", increase_quantity_cart_path(cart_item[:item]), method: :put, class: "button" %></td>
-        <td><%=link_to "Reduce 1", decrease_quantity_cart_path(cart_item[:item]), method: :put, class: "button" %></td>
-        <td><%=link_to "Remove From Cart", remove_from_cart_path(cart_item[:item]), method: :put, class: "button" %></td>
-        <td><%= link_to 'Show', cart_item[:item], style: "text-decoration: none" %></td>
+        <td><%=link_to "Add 1", increase_quantity_cart_path(cart_item[:item]), method: :put, class: "button", style: "text-decoration: none" %></td>
+        <td><%=link_to "Reduce 1", decrease_quantity_cart_path(cart_item[:item]), method: :put, class: "button", style: "text-decoration: none" %></td>
+        <td><%=link_to "Remove From Cart", remove_from_cart_path(cart_item[:item]), method: :put, class: "button", style: "text-decoration: none" %></td>
       </tr>
     <% end %>
     </tbody>

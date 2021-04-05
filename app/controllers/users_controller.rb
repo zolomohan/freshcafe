@@ -1,10 +1,15 @@
 class UsersController < ApplicationController
-    before_action :set_user_post, except: [:index]
+    before_action :set_user_post, except: [:index, :show]
+    before_action :set_user, only: [:show]
     before_action :require_login
-    before_action :require_admin
+    before_action :require_admin, except: [:show]
     
     def index
         @users = User.all
+    end
+
+    def show
+
     end
 
     def make_admin

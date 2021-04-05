@@ -1,11 +1,3 @@
-<p id="notice"><%= notice %></p>
-
 <h1 class="mt-5 mb-4">Categories</h1>
 
 <%= render 'list', items:@categories %>
-
-<br>
-
-<% if user_signed_in? && current_user.admin? %>
-    <%= link_to 'New Category', new_category_path, class: "ui button" %>
-<% end %>

@@ -2,16 +2,17 @@
     <thead>
       <tr>
         <th>Name</th>
+        <th>No. of Items</th>
         <th colspan="3"></th>
     </tr></thead>
     <tbody>
-      <% items.each do |item| %>
+      <% items.each do |category| %>
       <tr>
-        <td><%= item.name %></td>
-        <td><%= link_to 'Show', item, style: "text-decoration: none" %></td>
+        <td><%= link_to category.name, category, style: "text-decoration: none" %></td>
+        <td><%= category.items.count %> items</td>
         <% if user_signed_in? && current_user.admin? %>
-          <td><%= link_to 'Edit', edit_category_path(item), style: "text-decoration: none" %></td>
-          <td><%= link_to 'Destroy', item, method: :delete, data: { confirm: 'Are you sure?' }, style: "text-decoration: none" %></td>
+          <td><%= link_to 'Edit', edit_category_path(category), style: "text-decoration: none" %></td>
+          <td><%= link_to 'Destroy', category, method: :delete, data: { confirm: 'Are you sure?' }, style: "text-decoration: none" %></td>
         <% end %>
       </tr>
     <% end %>

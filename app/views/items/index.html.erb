@@ -1,5 +1,3 @@
-<p id="notice"><%= notice %></p>
-
 <h1 class="my-5">Menu (<%= @items.count %>)</h1>
 
 <%= render 'list', items:@items %>
@@ -7,6 +5,4 @@
 <br>
 
 <% if user_signed_in? &&  current_user.admin? %>
-<hr>
-    <%= link_to 'New Item', new_item_path, class: "ui button"  %>
 <% end %>

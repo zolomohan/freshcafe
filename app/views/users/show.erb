@@ -1,0 +1,26 @@
+<% if current_user.admin? %>
+    <h2 class="mt-5">Admin <span class="text-muted">(<%= current_user.email %>)</span></h2>
+    <hr>
+    <%= link_to "All Users", users_path, class: "ui button" %>
+    <%= link_to "All Orders", orders_path, class: "ui button" %>
+    <%= link_to 'New Item', new_item_path, class: "ui button"  %>
+    <%= link_to 'New Category', new_category_path, class: "ui button"  %>
+    <%= link_to "Edit Account", edit_account_path, class: "ui button" %>
+<% elsif !current_user.admin? && current_user.clerk? %>
+    <h2 class="mt-5">Staff</h2>
+    <hr>
+    <%= link_to "All Orders", orders_path, class: "ui button" %>
+    <%= link_to "Edit Account", edit_account_path, class: "ui button" %>
+<% else %>
+    <h2 class="mt-5"><%= current_user.email %></h2>
+    <hr>
+    <%= link_to "Edit Account", edit_account_path, class: "ui button" %>
+<% end %>
+
+<h2 class="mt-5">Past Orders</h2>
+<hr>
+<%= render 'orders/list', orders:@user.orders %>
+
+<% if @user.id == current_user.id && user_signed_in? %>
+
+<% end %>
