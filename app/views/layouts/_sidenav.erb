@@ -18,7 +18,7 @@
     <div>
     <div id="auth-links">
         <% if user_signed_in? %>
-            <%= link_to "Profile", "/users/#{current_user.id}" %>
+            <%= link_to "Profile #{current_user.admin ? "(Admin)" : current_user.clerk ? "(Staff)" : ""}", "/users/#{current_user.id}" %>
             <%= link_to "Logout", logout_path, class: "nav-link", method: :delete %>
         <% else %>
             <%= link_to "Login", login_path %>
