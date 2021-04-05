@@ -5,7 +5,7 @@
         <div class="header"><%= item.name %></div>
         <div class="meta">₹ <%= item.price %></div>
         <div class="description">
-          <%= item.description %>
+          <%= "#{item.description[0, 100]}#{"..." if item.description.length > 100}" %>
         </div>
         <% item.category.each_with_index do |category, index|%>
           <%= link_to "#{category.name}", category_path(category), class: "ui label mt-3", style: "text-decoration: none" %>
