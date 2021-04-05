@@ -1,0 +1,5 @@
+<h1 class="mt-5 mb-4">Order #<%= @order.id %></h1>
+
+<%= render 'order_item_list', items: @order.order_items %>
+
+<%= link_to "Back to Orders List", orders_path, class: "ui secondary button" %>

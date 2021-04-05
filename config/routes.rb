@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   post "remove_clerk", to: "users#remove_clerk"
 
   post "order", to: "orders#create"
+  get "order/:id", to: "orders#show"
 
   resource :cart, only: [:show] do
     put 'add/:id', to: 'carts#add', as: :add_to
@@ -27,5 +28,6 @@ Rails.application.routes.draw do
 
   resources :categories
   resources :items
+  resources :orders
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

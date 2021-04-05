@@ -1,0 +1,16 @@
+<table class="ui celled table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Price</th>
+        <th colspan="4"></th>
+    </tr></thead>
+    <tbody>
+      <% items.each do |item| %>
+      <tr>
+        <td><%= item.name %></td>
+        <td>₹ <%= item.price %></td>
+        <td><%= link_to 'Show', item_path(item.id), style: "text-decoration: none" %></td>
+      </tr>
+    <% end %>
+  </table>

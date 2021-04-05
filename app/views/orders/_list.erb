@@ -1,0 +1,18 @@
+<table class="ui celled table">
+  <thead>
+    <tr>
+      <th>Order ID</th>
+      <th>User</th>
+      <th colspan="4"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% orders.each do |order| %>
+    <tr>
+      <td><%= order.id %></td>
+      <td><%= order.user.email%></td>
+      <td><%= link_to 'Show', "orders/#{order.id}", style: "text-decoration: none" %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>

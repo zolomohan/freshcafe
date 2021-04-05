@@ -1,4 +1,12 @@
 class OrdersController < ApplicationController
+    def index
+        @orders = Order.all
+    end
+
+    def show
+        @order = Order.find(params[:id])
+    end
+
     def create
         order = Order.new(user: current_user)
         order.save
