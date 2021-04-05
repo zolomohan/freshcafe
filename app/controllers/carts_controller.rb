@@ -11,12 +11,12 @@ class CartsController < ApplicationController
   def add
     $redis.sadd current_user_cart, params[:id]
     $redis.set "#{current_user_cart}#{params[:id]}", 1
-    redirect_to cart_path
+    redirect_to root_path
   end
 
   def remove
     $redis.srem current_user_cart, params[:id]
-    redirect_to cart_path
+    redirect_to root_path
   end
 
   def increase_quantity

@@ -1,33 +1,21 @@
-<table class="ui celled table">
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Price</th>
-        <th>Description</th>
-        <th>Categories</th>
-        <th colspan="4"></th>
-    </tr></thead>
-    <tbody>
-      <% items.each do |item| %>
-      <tr>
-        <td><%= item.name %></td>
-        <td>₹ <%= item.price %></td>
-        <td><%= item.description %></td>
-        <td>
-          <% item.category.each_with_index do |category, index|%>
-          <%= link_to "#{category.name}", category_path(category), class: "ui black label", style: "text-decoration: none" %>
-          <% end %>
-        </td>
-        <td>
-          <%if user_signed_in?%>
-            <%=link_to "#{item.cart_action(current_user.id)} Cart", item.cart_action(current_user.id) == "Add to" ? add_to_cart_path(item) : remove_from_cart_path(item), method: :put %>
-          <%end%>
-        </td>
-        <td><%= link_to 'Show', item, style: "text-decoration: none" %></td>
-        <% if user_signed_in? && current_user.admin? %>
-          <td><%= link_to 'Edit', edit_item_path(item), style: "text-decoration: none" %></td>
-          <td><%= link_to 'Destroy', item, method: :delete, data: { confirm: 'Are you sure?' }, style: "text-decoration: none" %></td>
+<div class="ui cards">
+  <% items.each do |item| %>
+    <div class="card my-3 me-4">
+      <div class="content">
+        <div class="header"><%= item.name %></div>
+        <div class="meta">₹ <%= item.price %></div>
+        <div class="description">
+          <%= item.description %>
+        </div>
+        <% item.category.each_with_index do |category, index|%>
+          <%= link_to "#{category.name}", category_path(category), class: "ui label mt-3", style: "text-decoration: none" %>
         <% end %>
-      </tr>
-    <% end %>
-  </table>
+      </div>
+      
+      <% is_add_cart_action = item.cart_action(current_user.id) == "Add to" %>
+      <%if user_signed_in?%>
+        <%=link_to "#{item.cart_action(current_user.id)} Cart", is_add_cart_action ? add_to_cart_path(item) : remove_from_cart_path(item), method: :put, class: is_add_cart_action ? "ui button" : "ui negative button" %>
+      <%end%>
+    </div>
+  <% end %>
+</div>

@@ -20,7 +20,10 @@
   <%=link_to "#{@cart_action} Cart", @cart_action == "Add to" ? add_to_cart_path(@item) : remove_from_cart_path(@item), method: :put, class: "ui button" %>
 <%end%>
 
-<% if user_signed_in? &&  current_user.admin? %>
-  <%= link_to 'Edit', edit_item_path(@item), class: "ui button" %>
-<% end %>
 <%= link_to 'Back', items_path, class: "ui button" %>
+
+<% if user_signed_in? &&  current_user.admin? %>
+<hr>
+  <%= link_to 'Edit', edit_item_path(@item), class: "ui button" %>
+  <%= link_to 'Destroy', @item, method: :delete, data: { confirm: 'Are you sure?' }, style: "text-decoration: none", class: "ui negative button" %>
+<% end %>
