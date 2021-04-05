@@ -7,6 +7,13 @@ class ApplicationController < ActionController::Base
         end
       end
   
+      def require_clerk
+        if !current_user.admin? && !current_user.clerk?
+          flash[:notice] = "You are not Authorized to perform this action."
+          redirect_to root_path
+        end
+      end
+
       def require_admin
         if !current_user.admin?
           flash[:notice] = "You are not Authorized to perform this action."

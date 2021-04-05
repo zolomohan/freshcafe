@@ -1,4 +1,7 @@
 class OrdersController < ApplicationController
+    before_action :require_login
+    before_action :require_clerk, only: [:index, :mark_delivered, :mark_not_delivered]
+
     def index
         @orders = Order.all
     end

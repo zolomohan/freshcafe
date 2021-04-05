@@ -46,7 +46,7 @@
             <%= link_to "All Users", users_path, class: "nav-link" %>
           </li>
         <% end %>
-        <% if user_signed_in? && current_user.admin? %>
+        <% if user_signed_in? && (current_user.admin? || current_user.clerk?)%>
           <li class="nav-item">
             <%= link_to "All Orders", orders_path, class: "nav-link" %>
           </li>
