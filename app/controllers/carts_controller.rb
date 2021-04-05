@@ -2,10 +2,7 @@ class CartsController < ApplicationController
   before_action :require_login
 
   def show
-    cart_ids = $redis.smembers current_user_cart
-    @cart_items = Item.find(cart_ids)
-    @quantities = cart_ids.map {|item| $redis.get current_user_cart+item}
-    @items = cart_ids.each_with_index.map {|id, index| {:item => @cart_items[index], :quantity => @quantities[index]} }
+    get_cart_items
   end
 
   def add
