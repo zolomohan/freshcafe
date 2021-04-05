@@ -43,6 +43,8 @@
 
   #items {
     height: 74%;
+    overflow-y: scroll;
+    padding-right: 20px;
     .item {
       display: flex;
       justify-content: space-between;

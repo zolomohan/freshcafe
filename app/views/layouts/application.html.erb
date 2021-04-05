@@ -45,20 +45,34 @@
             <div class="left">
               <div class="name"><%= cart_item[:item].name%></div>
               <div class="quantity text-muted">Quantity: <%= cart_item[:quantity]%></div>
+              <div id="item-actions" class="mt-2 ui circular labels">
+                <%=link_to increase_quantity_cart_path(cart_item[:item]), method: :put, class: "me-2 ui label", style: "text-decoration: none" do %>
+                  <i class="fas fa-plus"></i>
+                <% end %>
+                <%=link_to decrease_quantity_cart_path(cart_item[:item]), method: :put, class: "me-2 ui label", style: "text-decoration: none" do %>
+                  <i class="fas fa-minus"></i>
+                <% end %>
+                <%=link_to remove_from_cart_path(cart_item[:item]), method: :put, class: "button ui negative label", style: "text-decoration: none" do %>
+                  <i class="fas fa-times"></i>
+                <% end %>
+              </div>
             </div>
             <div class="price text-muted">
               ₹ <%= cart_item[:item].price%>
             </div>
+           
           </div>
           <hr>
           <% end %>
         </div>
         <div id="panel-footer" class="footer d-none">
-          <p class="lead mb-3">Total Price: ₹ <%= get_cart_items.reduce(0)  {|sum, cart_item| sum + (cart_item[:item].price * cart_item[:quantity].to_i) } %></p>
+          <p class="lead mb-3 pt-3">Total Price: ₹ <%= get_cart_items.reduce(0)  {|sum, cart_item| sum + (cart_item[:item].price * cart_item[:quantity].to_i) } %></p>
         </div>
-        <button id="checkout-button" class="ui secondary button d-none">
-          Proceed to Checkout
-        </button>
+        <% order_create_params = [] %>
+        <% get_cart_items.each do |cart_item| %>
+          <% order_create_params.push({:id => cart_item[:item].id, :name => cart_item[:item].name, :price => cart_item[:item].price, :quantity => cart_item[:quantity]}) %>
+        <% end %>
+        <%= button_to "Proceed to Checkout", order_path, params: {items: order_create_params.to_json}, class: "ui secondary button d-none", id: "checkout-button", style: "width: 100%"%>
       </div>
     </div>
   </body>

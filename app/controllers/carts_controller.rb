@@ -19,14 +19,14 @@ class CartsController < ApplicationController
   def increase_quantity
     current = $redis.get "#{current_user_cart}#{params[:id]}"
     $redis.set "#{current_user_cart}#{params[:id]}", current.to_i + 1
-    redirect_to cart_path
+    redirect_to root_path
   end
 
   def decrease_quantity
     current = $redis.get "#{current_user_cart}#{params[:id]}"
     if current.to_i > 0
       $redis.set "#{current_user_cart}#{params[:id]}", current.to_i - 1
-      redirect_to cart_path
+      redirect_to root_path
     end
   end
 end
