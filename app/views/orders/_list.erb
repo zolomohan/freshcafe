@@ -3,6 +3,7 @@
     <tr>
       <th>Order ID</th>
       <th>User</th>
+      <th>Bill Amount</th>
       <th colspan="4"></th>
     </tr>
   </thead>
@@ -10,7 +11,8 @@
     <% orders.each do |order| %>
     <tr>
       <td><%= order.id %></td>
-      <td><%= order.user.email%></td>
+      <td><%= order.user.email %></td>
+      <td><%= order.total_price %></td>
       <td><%= link_to 'Show', "orders/#{order.id}", style: "text-decoration: none" %></td>
     </tr>
     <% end %>

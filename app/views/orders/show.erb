@@ -2,4 +2,6 @@
 
 <%= render 'order_item_list', items: @order.order_items %>
 
+<p class="lead my-5" style="font-size: 25px;">Total Price: ₹ <%= @order.total_price %></p>
+
 <%= link_to "Back to Orders List", orders_path, class: "ui secondary button" %>

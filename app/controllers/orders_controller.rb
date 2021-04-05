@@ -9,9 +9,9 @@ class OrdersController < ApplicationController
 
     def create
         order = Order.new(user: current_user)
-        order.save
         order_items_data = JSON.parse(order_params)
-        first = order_items_data[0]
+        order.total_price = order_items_data.reduce(0) {|sum, item| sum + (item["price"] * item["quantity"].to_i) }
+        order.save
         order_items_data.each do |item| 
             order_item = OrderItem.new(name: item["name"], price: item["price"], quantity: item["quantity"], order_id: order.id, item_id: item["id"])
             order_item.save
