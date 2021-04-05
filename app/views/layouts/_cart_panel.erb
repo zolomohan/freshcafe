@@ -12,10 +12,10 @@
             <div class="name"><%= cart_item[:item].name%></div>
             <div class="quantity text-muted">Quantity: <%= cart_item[:quantity]%></div>
             <div id="item-actions" class="mt-2 ui circular labels">
-              <%=link_to increase_quantity_cart_path(cart_item[:item]), method: :put, class: "me-2 ui label", style: "text-decoration: none" do %>
+              <%=link_to increase_quantity_cart_path(cart_item[:item]), method: :put, class: "me-2 ui green label", style: "text-decoration: none" do %>
                 <i class="fas fa-plus"></i>
               <% end %>
-              <%=link_to decrease_quantity_cart_path(cart_item[:item]), method: :put, class: "me-2 ui label", style: "text-decoration: none" do %>
+              <%=link_to decrease_quantity_cart_path(cart_item[:item]), method: :put, class: "me-2 ui green label", style: "text-decoration: none" do %>
                 <i class="fas fa-minus"></i>
               <% end %>
               <%=link_to remove_from_cart_path(cart_item[:item]), method: :put, class: "button ui negative label", style: "text-decoration: none" do %>
