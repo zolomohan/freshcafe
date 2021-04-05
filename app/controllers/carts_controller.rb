@@ -1,10 +1,6 @@
 class CartsController < ApplicationController
   before_action :require_login
 
-  def show
-    get_cart_items
-  end
-
   def add
     $redis.sadd current_user_cart, params[:id]
     $redis.set "#{current_user_cart}#{params[:id]}", 1

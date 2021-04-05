@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   post "order", to: "orders#create"
   get "order/:id", to: "orders#show"
 
-  resource :cart, only: [:show] do
+  resource :cart, only: [] do
     put 'add/:id', to: 'carts#add', as: :add_to
     put 'remove/:id', to: 'carts#remove', as: :remove_from
     put 'increase/:id', to: 'carts#increase_quantity', as: :increase_quantity
