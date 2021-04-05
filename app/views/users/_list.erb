@@ -7,7 +7,7 @@
     <tbody>
       <% users.each do |user| %>
       <tr>
-        <td><%= user.email %></td>
+        <td><%= link_to user.email, "/users/#{user.id}" %></td>
         <td>
           <%= button_to user.admin ? 'Remove Admin' : 'Make Admin', user.admin ? remove_admin_path : make_admin_path, params: {id: user.id}, data: { confirm: 'Are you sure?' }, class: "btn btn-link", style: "text-decoration: none" %>
         </td>
