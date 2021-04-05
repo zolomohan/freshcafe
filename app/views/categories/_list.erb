@@ -1,19 +1,19 @@
-<table class="ui celled table">
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>No. of Items</th>
-        <th colspan="3"></th>
-    </tr></thead>
-    <tbody>
-      <% items.each do |category| %>
-      <tr>
-        <td><%= link_to category.name, category, style: "text-decoration: none" %></td>
-        <td><%= category.items.count %> items</td>
+<div class="ui cards">
+  <% items.each do |category| %>
+  <div class="ui card">
+    <a class="image" href="#">
+      <%= image_tag category.main_image, style: "height: 200px" %>
+    </a>
+    <div class="content">
+      <%= link_to category.name, category, style: "text-decoration: none; font-family: 'Montserrat'; font-size: 17px" %>
+      <div class="meta">
+        <a><%= category.items.count %> Items | </a>
         <% if user_signed_in? && current_user.admin? %>
-          <td><%= link_to 'Edit', edit_category_path(category), style: "text-decoration: none" %></td>
-          <td><%= link_to 'Destroy', category, method: :delete, data: { confirm: 'Are you sure?' }, style: "text-decoration: none" %></td>
+          <%= link_to 'Edit', edit_category_path(category), style: "text-decoration:none" %> | 
+          <%= link_to 'Destroy', category, method: :delete, data: { confirm: 'Are you sure?' }, style: "text-decoration: none" %>
         <% end %>
-      </tr>
-    <% end %>
-  </table>
+      </div>
+    </div>
+  </div>
+  <% end %>
+</div>
