@@ -2,15 +2,26 @@
   <% items.each do |item| %>
     <div class="card my-3 me-4">
       <%= image_tag item.main_image, class: "image", style: "height: 200px" %>
+      <div class="ui black label" style="position: absolute; right: 0; margin-top: 10px; margin-right: 10px; font-size: 13px;">₹ <%= item.price %></div>
       <div class="content">
+        <% if user_signed_in? && current_user.admin? %>
+          <%= link_to item_path(item), method: :delete do %>
+          <i class="right floated fas fa-times icon" style="text-decoration: none; color: #222;"></i>
+          <% end %>
+          <%= link_to edit_item_path(item) do %>
+            <i class="right floated fas fa-pencil-alt icon" style="text-decoration: none; color: #222;"></i>
+          <% end %>
+        <% end %>
         <div class="header"><%= item.name %></div>
-        <div class="meta">₹ <%= item.price %></div>
+        <div class="meta">
+        <% item.category.each_with_index do |category, index|%>
+          <%= link_to "#{category.name}", category_path(category), class: "mt-3", style: "text-decoration: none" %><%= ", " if index < item.category.count - 1 %>
+        <% end %>
+      </div>
         <div class="description">
           <%= "#{item.description[0, 100]}#{"..." if item.description.length > 100}" %>
         </div>
-        <% item.category.each_with_index do |category, index|%>
-          <%= link_to "#{category.name}", category_path(category), class: "ui label mt-3", style: "text-decoration: none" %>
-        <% end %>
+        
       </div>
       
       <%if user_signed_in?%>
