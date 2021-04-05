@@ -3,7 +3,13 @@ class OrdersController < ApplicationController
     before_action :require_clerk, only: [:index, :mark_delivered, :mark_not_delivered]
 
     def index
-        @orders = Order.all
+        @orders = Order.where(created_at: 3.days.ago..DateTime.now)
+    end
+
+    def report
+        @from = Date.strptime(params[:from], '%Y-%m-%d')
+        @to = Date.strptime(params[:to], '%Y-%m-%d')
+        @orders = Order.where(created_at: @from..@to)
     end
 
     def show

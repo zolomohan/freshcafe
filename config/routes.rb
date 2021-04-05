@@ -36,6 +36,8 @@ Rails.application.routes.draw do
     get "signup", to: "devise/registrations#new"
     get "edit_account", to: "devise/registrations#edit"
   end
+
+  get "orders_report", to: "orders#report"
   
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

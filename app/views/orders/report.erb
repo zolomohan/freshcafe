@@ -1,0 +1,5 @@
+<h1 class="mt-4">Orders Report <span class="text-muted">(<%= "#{@from} / #{@to}" %>)</span></h1>
+<hr class="mb-5">
+
+<h2 class="mb-5">Total Sales: ₹ <%= @orders.reduce(0) {|sum, order| sum + order.total_price} %></h2>
+<%= render 'list', orders:@orders %>
