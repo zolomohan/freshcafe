@@ -5,7 +5,11 @@ class CategoriesController < ApplicationController
 
   # GET /categories or /categories.json
   def index
-    @categories = Category.all
+    @categories = Category.where(active: true)
+  end
+
+  def deactivated_index
+    @categories = Category.where(active: false)
   end
 
   # GET /categories/1 or /categories/1.json
@@ -66,6 +70,6 @@ class CategoriesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def category_params
-      params.require(:category).permit(:name, :main_image)
+      params.require(:category).permit(:name, :main_image, :active)
     end
 end

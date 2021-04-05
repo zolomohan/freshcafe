@@ -1,0 +1,8 @@
+<h1 class="mt-4 ">Deactivated Categories</h1>
+<hr class="mb-5">
+
+<% if @categories.count == 0 %>
+    <p class="lead text-muted">No Deactivated Categories</p>
+<% else %>
+    <%= render 'list', items:@categories %>
+<% end %>

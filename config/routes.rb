@@ -21,6 +21,8 @@ Rails.application.routes.draw do
   end
 
   resources :categories
+  get 'deactivated_categories', to: "categories#deactivated_index"
+
   resources :items, except: [:show]
   resources :orders, only: [:create, :index, :show] do
     put 'deliver', to: 'orders#mark_delivered', as: 'deliver'
