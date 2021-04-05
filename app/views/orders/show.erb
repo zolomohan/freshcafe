@@ -1,9 +1,11 @@
-<h1 class="mt-5 mb-4">Order #<%= @order.id %></h1>
+<h1 class="mt-5">Order #<%= @order.id %></h1>
+<h3 class="mb-5 text-muted"><%= @order.user.email %></h3>
 
+<p class="lead mt-5 mb-3" style="font-size: 20px;"><strong>Status:</strong> <%= @order.delivered ? "Delivered" : "Pending Delivery" %></p>
 <%= render 'order_item_list', items: @order.order_items %>
 
 <p class="lead my-5" style="font-size: 25px;">Total Price: ₹ <%= @order.total_price %></p>
-<p class="lead my-5" style="font-size: 20px;">Delivery Status: <%= @order.delivered ? "Delivered" : "Pending" %></p>
 
+<% if current_user.admin? || current_user.clerk? %>
 <%= link_to @order.delivered ? "Mark as Pending" : "Mark as Delivered", @order.delivered ? order_not_deliver_path(@order.id) : order_deliver_path(@order.id), method: :put, style: "text-decoration: none", class: "ui button" %>
-<%= link_to "Back to Orders List", orders_path, class: "ui secondary button" %>
+<% end %>
