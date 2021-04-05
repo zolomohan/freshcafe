@@ -1,3 +1,16 @@
 <h1 class="my-4">All Orders</h1>
+<hr>
 
-<%= render 'list', orders:@orders %>
+<h3 class="my-4">Pending</h3>
+<% if @pending_orders.count > 0 %>
+    <%= render 'list', orders:@pending_orders %>
+<% else %>
+    <p class="lead text-muted">No Pending Orders</p>
+<% end %>
+
+<h3 class="mt-5 mb-4">Delivered</h3>
+<% if @delivered_orders.count > 0 %>
+    <%= render 'list', orders:@delivered_orders %>
+<% else %>
+    <p class="lead text-muted">No Delivered Orders</p>
+<% end %>

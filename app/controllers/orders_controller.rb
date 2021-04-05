@@ -4,7 +4,8 @@ class OrdersController < ApplicationController
     before_action :require_admin, only: [:report]
 
     def index
-        @orders = Order.where(created_at: 3.days.ago..DateTime.now)
+        @pending_orders = Order.where(delivered: false)
+        @delivered_orders = Order.where(delivered: true)
     end
 
     def report
