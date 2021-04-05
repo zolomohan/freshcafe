@@ -3,7 +3,7 @@
 <%= render 'order_item_list', items: @order.order_items %>
 
 <p class="lead my-5" style="font-size: 25px;">Total Price: ₹ <%= @order.total_price %></p>
-<p class="lead my-5" style="font-size: 20px;">Delivered: <%= @order.delivered.to_s.capitalize %></p>
+<p class="lead my-5" style="font-size: 20px;">Delivery Status: <%= @order.delivered ? "Delivered" : "Pending" %></p>
 
-<%= link_to @order.delivered ? "Mark Not Delivered" : "Mark Delivered", @order.delivered ? order_not_deliver_path(@order.id) : order_deliver_path(@order.id), method: :put, style: "text-decoration: none", class: "ui button" %>
+<%= link_to @order.delivered ? "Mark as Pending" : "Mark as Delivered", @order.delivered ? order_not_deliver_path(@order.id) : order_deliver_path(@order.id), method: :put, style: "text-decoration: none", class: "ui button" %>
 <%= link_to "Back to Orders List", orders_path, class: "ui secondary button" %>

@@ -20,7 +20,7 @@ class OrdersController < ApplicationController
         redis_keys = item_ids.map {|id| "#{current_user_cart}#{id}"}
         redis_keys.push(current_user_cart)
         $redis.del(redis_keys)
-        redirect_to orders_path(order.id)
+        redirect_to controller: 'orders', action: 'show', id: order.id
     end
 
     def mark_delivered
