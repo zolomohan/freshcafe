@@ -1,20 +1,18 @@
-<table class="ui celled table">
-    <thead>
-      <tr>
-        <th>Email</th>
-        <th colspan="3"></th>
-    </tr></thead>
-    <tbody>
-      <% users.each do |user| %>
-      <tr>
-        <td><%= link_to user.email, "/users/#{user.id}" %></td>
-        <td>
-          <%= button_to user.admin ? 'Remove Admin' : 'Make Admin', user.admin ? remove_admin_path : make_admin_path, params: {id: user.id}, data: { confirm: 'Are you sure?' }, class: "btn btn-link", style: "text-decoration: none" %>
-        </td>
-        <td>
-          <%= button_to user.clerk ? 'Remove Clerk' : 'Make Clerk', user.clerk ? remove_clerk_path : make_clerk_path, params: {id: user.id}, data: { confirm: 'Are you sure?' }, class: "btn btn-link", style: "text-decoration: none" %>
-        </td>
-        <td><%= link_to 'Destroy', users_path(user), method: :delete, data: { confirm: 'Are you sure?' }, style: "text-decoration: none" %></td>
-      </tr>
-    <% end %>
-  </table>
+<div class="ui cards">
+  <% users.each do |user| %>
+  <div class="card me-4" style="width: 350px !important;">
+    <div class="content">
+      <div class="header"><%= link_to user.email, "/users/#{user.id}", style: "text-decoration: none; font-family: 'Montserrat'; font-weight: 400;" %></div>
+      <div class="meta"><%= user.admin ? "Admin" : user.clerk ? "Staff" : "Customer" %></div>
+      <hr>
+      <div class="extra content">
+        <%= button_to user.admin ? 'Remove Admin' : 'Make Admin', user.admin ? remove_admin_path : make_admin_path, params: {id: user.id}, data: { confirm: 'Are you sure?' }, class: "button-link", style: "text-decoration: none" %>
+        <% if !user.admin %>
+          <%= button_to user.clerk ? 'Remove Clerk' : 'Make Clerk', user.clerk ? remove_clerk_path : make_clerk_path, params: {id: user.id}, data: { confirm: 'Are you sure?' }, class: "button-link", style: "text-decoration: none" %>
+        <% end %>
+        <%= link_to 'Delete User', users_path(user), method: :delete, data: { confirm: 'Are you sure?' }, class: 'button-link', style: "text-decoration: none" %>
+      </div>
+    </div>
+  </div>
+<% end %>
+</div>
