@@ -18,7 +18,12 @@ class OrdersController < ApplicationController
     end
 
     def create
-        order = Order.new(user: current_user)
+        if current_user.admin? || current_user.clerk?
+            user = User.find(7)
+        else
+            user = current_user
+        end
+        order = Order.new(user: user)
         order_items_data = JSON.parse(order_params)
         order.total_price = order_items_data.reduce(0) {|sum, item| sum + (item["price"] * item["quantity"].to_i) }
         order.save
