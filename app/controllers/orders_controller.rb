@@ -8,9 +8,13 @@ class OrdersController < ApplicationController
     end
 
     def report
-        @from = Date.strptime(params[:from], '%Y-%m-%d')
-        @to = Date.strptime(params[:to], '%Y-%m-%d')
-        @orders = Order.where(created_at: @from..@to)
+        if !params[:from] || !params[:to]
+            @orders = []
+        else
+            @from = Date.strptime(params[:from], '%Y-%m-%d')
+            @to = Date.strptime(params[:to], '%Y-%m-%d')
+            @orders = Order.where(created_at: @from..@to)
+        end
     end
 
     def show

@@ -1,25 +1,15 @@
 <% if current_user == @user %>
     <% if @user.admin? %>
-        <h2 class="mt-5">Admin: <span class="text-muted"><%= @user.email %></span></h2>
-        <hr>
+        <h2 class="mt-5 mb-3">Admin: <span class="text-muted"><%= @user.email %></span></h2>
         <%= link_to 'New Item', new_item_path, class: "ui button"  %>
         <%= link_to 'New Category', new_category_path, class: "ui button"  %>
         <%= link_to "View Users", users_path, class: "ui button" %>
         <%= link_to "View Orders", orders_path, class: "ui button" %>
+        <%= link_to "View Reports", orders_report_path, class: "ui button" %>
         <%= link_to "Edit Account", edit_account_path, class: "ui button" %>
-        <br>
-        <% if current_user.admin? %>
-            <form class="mt-4" action="/orders_report/" method="GET">
-                <label class="lead me-2" for="from" style="font-family: 'Montserrat'; font-weight: 400;">From</label>
-                <input type="date" name="from" id="from" class="me-4" required>
-                <label class="lead me-2" for="from" style="font-family: 'Montserrat'; font-weight: 400;">To</label>
-                <input type="date" name="to" id="from" class="me-4" required>
-                <input type="submit" value="Fetch Report" class="ui button">
-            </form>
-        <% end %>
+
     <% elsif !@user.admin? && @user.clerk? %>
-        <h2 class="mt-5">Staff: <span class="text-muted"><%= @user.email %></span></h2>
-        <hr>
+        <h2 class="mt-5 mb-3">Staff: <span class="text-muted"><%= @user.email %></span></h2>
         <%= link_to "All Orders", orders_path, class: "ui button" %>
         <%= link_to "Edit Account", edit_account_path, class: "ui button" %>
     <% else %>

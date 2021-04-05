@@ -7,13 +7,12 @@
       <th>Bill Amount</th>
       <th>Delivery Status</th>
       <th>Update Delivery Status</th>
-      <th colspan="4"></th>
     </tr>
   </thead>
   <tbody>
     <% orders.each do |order| %>
     <tr>
-      <td><%= order.id %></td>
+      <td><%= link_to "##{order.id}", "/orders/#{order.id}" %></td>
       <td><%= "#{order.created_at.day}/#{order.created_at.month}/#{order.created_at.year}" %></td>
       <td><%= order.user.email %></td>
       <td>₹ <%= order.total_price %></td>
@@ -21,7 +20,6 @@
       <% if current_user.admin? || current_user.clerk? %>
         <td><%= link_to order.delivered ? "Mark as Pending" : "Mark as Delivered", order.delivered ? order_not_deliver_path(order.id) : order_deliver_path(order.id), method: :put, style: "text-decoration: none" %></td>
       <% end %>
-      <td><%= link_to "Show", "/orders/#{order.id}" %></td>
     </tr>
     <% end %>
   </tbody>

@@ -1,5 +1,17 @@
-<h1 class="mt-4">Orders Report <span class="text-muted">(<%= "#{@from} / #{@to}" %>)</span></h1>
+<h1 class="mt-4">Orders Report <span class="text-muted"><%= "(#{@from} / #{@to})" if @from || @to %></span></h1>
 <hr class="mb-5">
 
-<h2 class="mb-5">Total Sales: ₹ <%= @orders.reduce(0) {|sum, order| sum + order.total_price} %></h2>
+<form class="my-5" action="/orders_report/" method="GET">
+    <label class="lead me-2" for="from" style="font-family: 'Montserrat'; font-weight: 400;">From</label>
+    <input type="date" name="from" id="from" class="me-4" required>
+    <label class="lead me-2" for="from" style="font-family: 'Montserrat'; font-weight: 400;">To</label>
+    <input type="date" name="to" id="from" class="me-4" required>
+    <input type="submit" value="Fetch" class="ui button">
+</form>
+
+<% if !@from || !@to %>
+<p class="lead text-muted">Select "From Date" and "To Date" and Click Fetch.</p>
+<% else %>
 <%= render 'list', orders:@orders %>
+<h2 class="my-5">Total Sales: ₹ <%= @orders.reduce(0) {|sum, order| sum + order.total_price} %></h2>
+<% end %>
