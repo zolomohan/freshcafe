@@ -7,13 +7,15 @@
     <div class="content">
       <%= link_to category.name, category, style: "text-decoration: none; font-family: 'Montserrat'; font-size: 17px" %>
       <div class="meta">
-        <a><%= category.items.count %> Items | </a>
-        <% if user_signed_in? && current_user.admin? %>
-          <%= link_to 'Edit', edit_category_path(category), style: "text-decoration:none" %> | 
-          <%= link_to 'Destroy', category, method: :delete, data: { confirm: 'Are you sure?' }, style: "text-decoration: none" %>
-        <% end %>
+        <a><%= category.items.count %> Items</a>
       </div>
     </div>
+    <% if user_signed_in? && current_user.admin? %>
+    <div class="extra content">
+      <%= link_to 'Edit', edit_category_path(category), style: "text-decoration:none" %> | 
+      <%= link_to 'Destroy', category, method: :delete, data: { confirm: 'Are you sure?' }, style: "text-decoration: none" %>
+    </div>
+    <% end %>
   </div>
   <% end %>
 </div>
