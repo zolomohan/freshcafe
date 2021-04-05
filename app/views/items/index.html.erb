@@ -1,8 +1,4 @@
 <h1 class="my-5">Menu (<%= @items.count %>)</h1>
 
 <%= render 'list', items:@items %>
-
-<br>
-
-<% if user_signed_in? &&  current_user.admin? %>
-<% end %>
+<%= render 'carts/list', cart_items:get_cart_items %>
