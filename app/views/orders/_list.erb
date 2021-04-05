@@ -13,7 +13,7 @@
       <td><%= order.id %></td>
       <td><%= order.user.email %></td>
       <td><%= order.total_price %></td>
-      <td><%= link_to 'Show', "orders/#{order.id}", style: "text-decoration: none" %></td>
+      <td><%= link_to 'Show', orders_path(order.id), style: "text-decoration: none" %></td>
     </tr>
     <% end %>
   </tbody>

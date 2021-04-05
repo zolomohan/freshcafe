@@ -19,9 +19,8 @@ class OrdersController < ApplicationController
         item_ids = $redis.smembers current_user_cart
         redis_keys = item_ids.map {|id| "#{current_user_cart}#{id}"}
         redis_keys.push(current_user_cart)
-        debugger
         $redis.del(redis_keys)
-        redirect_to cart_path
+        redirect_to orders_path(order.id)
     end
 
     private
