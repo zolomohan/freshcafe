@@ -8,11 +8,6 @@ class ItemsController < ApplicationController
     @items = Item.all
   end
 
-  # GET /items/1 or /items/1.json
-  def show
-    @cart_action = @item.cart_action current_user.try :id
-  end
-
   # GET /items/new
   def new
     @item = Item.new

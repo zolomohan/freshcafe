@@ -27,7 +27,7 @@ Rails.application.routes.draw do
   end
 
   resources :categories
-  resources :items
+  resources :items, except: [:show]
   resources :orders, only: [:create, :index, :show] do
     put 'deliver', to: 'orders#mark_delivered', as: 'deliver'
     put 'not_deliver', to: 'orders#mark_not_delivered'
