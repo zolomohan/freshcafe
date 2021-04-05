@@ -4,6 +4,8 @@
       <th>Order ID</th>
       <th>User</th>
       <th>Bill Amount</th>
+      <th>Delivered</th>
+      <th>Mark Delivered</th>
       <th colspan="4"></th>
     </tr>
   </thead>
@@ -12,7 +14,9 @@
     <tr>
       <td><%= order.id %></td>
       <td><%= order.user.email %></td>
-      <td><%= order.total_price %></td>
+      <td>₹ <%= order.total_price %></td>
+      <td><%= order.delivered.to_s.capitalize %></td>
+      <td><%= link_to order.delivered ? "Mark Not Delivered" : "Mark Delivered", order.delivered ? order_not_deliver_path(order.id) : order_deliver_path(order.id), method: :put, style: "text-decoration: none" %></td>
       <td><%= link_to 'Show', orders_path(order.id), style: "text-decoration: none" %></td>
     </tr>
     <% end %>

@@ -23,6 +23,30 @@ class OrdersController < ApplicationController
         redirect_to orders_path(order.id)
     end
 
+    def mark_delivered
+        order_id = params.require(:order_id)
+        order = Order.find(order_id)
+        order.delivered = true
+        if order.save
+            flash[:success] = "Order Delivered Successfully"
+            redirect_to orders_path
+        else
+            render :index
+        end
+    end
+
+    def mark_not_delivered
+        order_id = params.require(:order_id)
+        order = Order.find(order_id)
+        order.delivered = false
+        if order.save
+            flash[:success] = "Order marked as Not Delivered"
+            redirect_to orders_path
+        else
+            render :index
+        end
+    end
+
     private
     def order_params
         params.require(:items)

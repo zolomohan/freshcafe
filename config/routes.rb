@@ -28,6 +28,10 @@ Rails.application.routes.draw do
 
   resources :categories
   resources :items
-  resources :orders, only: [:create, :index, :show]
+  resources :orders, only: [:create, :index, :show] do
+    put 'deliver', to: 'orders#mark_delivered', as: 'deliver'
+    put 'not_deliver', to: 'orders#mark_not_delivered'
+  end
+  
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
