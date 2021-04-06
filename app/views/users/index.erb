@@ -2,3 +2,7 @@
 <hr class="mb-5">
 
 <%= render 'list', users:@users %>
+
+<div class="my-5 pb-5">
+    <%= will_paginate @users, renderer: WillPaginateSemanticUi::ActionView::Renderer %>
+</div>
