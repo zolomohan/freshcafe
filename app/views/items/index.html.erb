@@ -1,3 +1,7 @@
-<h1 class="mt-4 ">Menu (<%= @items.count %>)</h1>
+<h1 class="mt-4">Menu (<%= @items.count %>)</h1>
 <hr class="mb-5">
+
 <%= render 'list', items:@items %>
+<div class="my-5">
+    <%= will_paginate %>
+</div>

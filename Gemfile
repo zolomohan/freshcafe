@@ -30,6 +30,7 @@ gem 'bootsnap', '>= 1.4.4', require: false
 gem 'devise', '~> 4.2'
 gem 'redis', '~> 3.3', '>= 3.3.1'
 gem 'hiredis', '~> 0.6.3'
+gem 'will_paginate', '~> 3.1', '>= 3.1.6'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
