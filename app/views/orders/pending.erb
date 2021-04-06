@@ -1,7 +1,7 @@
 <h1 class="my-4">Pending Orders</h1>
-<hr>
+<hr class="mb-4">
 
-<% if true %>
+<% if @pending_orders.count > 0 %>
     <%= render 'list', orders:@pending_orders %>
     <div class="my-5 pb-5">
         <%= will_paginate @pending_orders, renderer: WillPaginateSemanticUi::ActionView::Renderer %>
