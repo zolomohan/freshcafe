@@ -31,11 +31,11 @@
         <hr>
       <% end %>
     <% else %>
-        <p class="lead text-muted">Add Items to Purchase</p>
+        <p class="lead text-muted pt-3">Add Items to Purchase</p>
     <% end %>
   </div>
   <div id="panel-footer" class="footer d-none">
-    <p class="lead mb-3 pt-3">Total Price: ₹ <%= cart_items.reduce(0)  {|sum, cart_item| sum + (cart_item[:item].price * cart_item[:quantity].to_i) } %></p>
+    <p class="lead mb-3 pt-3" style="font-size: 20px;">Total Price: ₹ <%= cart_items.reduce(0)  {|sum, cart_item| sum + (cart_item[:item].price * cart_item[:quantity].to_i) } %></p>
     <% order_create_params = [] %>
     <% cart_items.each do |cart_item| %>
       <% order_create_params.push({:id => cart_item[:item].id, :name => cart_item[:item].name, :price => cart_item[:item].price, :quantity => cart_item[:quantity]}) %>

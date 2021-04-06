@@ -35,33 +35,41 @@
         </div>
         <% end %>
         <%= yield %>
-        <% if user_signed_in? %>
-          <%= render 'layouts/cart_panel' %>
-        <% end %>
       </div>
     </div>
+    <% if user_signed_in? %>
+      <%= render 'layouts/cart_panel' %>
+    <% end %>
 
    
   </body>
   <script>
+    const openPanel = () => {
+      $(".panel").css('height', '700px');
+      $("#items").removeClass('d-none');
+      $("#panel-footer").removeClass('d-none');
+      $("#checkout-button").removeClass('d-none');
+      $('#toggle-panel').removeClass('fa-chevron-up');
+      $('#toggle-panel').addClass('fa-chevron-down');
+    }
+
+    const closePanel = () => {
+      $(".panel").css('height', '70px');
+      $("#items").addClass('d-none');
+      $("#panel-footer").addClass('d-none');
+      $("#checkout-button").addClass('d-none');
+      $('#toggle-panel').addClass('fa-chevron-up');
+      $('#toggle-panel').removeClass('fa-chevron-down');
+    }
+
+    $('.panel .header').click(() => {
+      let is_panel_minimized = $(".panel").css('height') === "70px";
+      if (is_panel_minimized) openPanel();
+    })
+
     $('#toggle-panel').click(() => {
       let is_panel_minimized = $(".panel").css('height') === "70px";
-      if(!is_panel_minimized) {
-        $(".panel").css('height', '70px')
-        $("#items").addClass('d-none')
-        $("#panel-footer").addClass('d-none')
-        $("#checkout-button").addClass('d-none')
-        $('#toggle-panel').addClass('fa-chevron-up')
-        $('#toggle-panel').removeClass('fa-chevron-down')
-
-      } else {
-        $(".panel").css('height', '700px')
-        $("#items").removeClass('d-none')
-        $("#panel-footer").removeClass('d-none')
-        $("#checkout-button").removeClass('d-none')
-        $('#toggle-panel').removeClass('fa-chevron-up')
-        $('#toggle-panel').addClass('fa-chevron-down')
-      }
+      is_panel_minimized ? openPanel() : closePanel();
     })
   </script>
 </html>
