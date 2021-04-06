@@ -1,21 +1,10 @@
-<h1 class="my-4">All Orders</h1>
+<h1 class="my-4">Delivered Orders</h1>
 <hr>
 
-<h3 class="my-4">Pending</h3>
-<% if true %>
-    <%= render 'list', orders:@pending_orders %>
-    <div class="my-5 pb-5">
-        <%= will_paginate @pending_orders, param_name: "pending_page", renderer: WillPaginateSemanticUi::ActionView::Renderer %>
-    </div>
-<% else %>
-    <p class="lead text-muted">No Pending Orders</p>
-<% end %>
-
-<h3 class="mt-5 mb-4">Delivered</h3>
 <% if @delivered_orders.count > 0 %>
     <%= render 'list', orders:@delivered_orders %>
     <div class="my-5 pb-5">
-        <%= will_paginate @delivered_orders, param_name: "delivered_page", renderer: WillPaginateSemanticUi::ActionView::Renderer %>
+        <%= will_paginate @delivered_orders, renderer: WillPaginateSemanticUi::ActionView::Renderer %>
     </div>
 <% else %>
     <p class="lead text-muted">No Delivered Orders</p>

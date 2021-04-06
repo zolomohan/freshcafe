@@ -4,13 +4,15 @@
         <%= link_to 'New Item', new_item_path, class: "ui button"  %>
         <%= link_to 'New Category', new_category_path, class: "ui button"  %>
         <%= link_to "View Users", users_path, class: "ui button" %>
-        <%= link_to "View Orders", orders_path, class: "ui button" %>
+        <%= link_to "View Pending Orders", pending_orders_path, class: "ui button" %>
+        <%= link_to "View Delivered Orders", delivered_orders_path, class: "ui button" %>
         <%= link_to "View Reports", orders_report_path, class: "ui button" %>
         <%= link_to "Edit Account", edit_account_path, class: "ui button" %>
 
     <% elsif !@user.admin? && @user.clerk? %>
         <h2 class="mt-5 mb-3">Staff: <span class="text-muted"><%= @user.email %></span></h2>
-        <%= link_to "All Orders", orders_path, class: "ui button" %>
+        <%= link_to "View Pending Orders", pending_orders_path, class: "ui button" %>
+        <%= link_to "View Delivered Orders", delivered_orders_path, class: "ui button" %>
         <%= link_to "Edit Account", edit_account_path, class: "ui button" %>
     <% else %>
         <h2 class="mt-5"><%= current_user.email %></h2>

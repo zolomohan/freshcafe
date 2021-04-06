@@ -1,11 +1,14 @@
 class OrdersController < ApplicationController
     before_action :require_login
-    before_action :require_clerk, only: [:index, :mark_delivered, :mark_not_delivered]
+    before_action :require_clerk, only: [:index, :pending, :mark_delivered, :mark_not_delivered]
     before_action :require_admin, only: [:report]
 
     def index
-        @pending_orders = Order.where(delivered: false).paginate(page: params[:pending_page], per_page: 10)
-        @delivered_orders = Order.where(delivered: true).paginate(page: params[:delivered_page], per_page: 10)
+        @delivered_orders = Order.where(delivered: true).paginate(page: params[:page], per_page: 10)
+    end
+
+    def pending
+        @pending_orders = Order.where(delivered: false).paginate(page: params[:page], per_page: 10)
     end
 
     def report

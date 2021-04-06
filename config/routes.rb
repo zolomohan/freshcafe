@@ -24,10 +24,12 @@ Rails.application.routes.draw do
   get 'deactivated_categories', to: "categories#deactivated_index"
 
   resources :items, except: [:show]
-  resources :orders, only: [:create, :index, :show] do
+  resources :orders, only: [:create, :show] do
     put 'deliver', to: 'orders#mark_delivered', as: 'deliver'
     put 'not_deliver', to: 'orders#mark_not_delivered'
   end
+  get 'pending_orders', to: 'orders#pending'
+  get 'delivered_orders', to: 'orders#index'
 
   devise_for :users
   devise_scope :user do
