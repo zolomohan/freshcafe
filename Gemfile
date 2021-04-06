@@ -31,6 +31,7 @@ gem 'devise', '~> 4.2'
 gem 'redis', '~> 3.3', '>= 3.3.1'
 gem 'hiredis', '~> 0.6.3'
 gem 'will_paginate', '~> 3.1', '>= 3.1.6'
+gem "will_paginate_semantic_ui"
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
