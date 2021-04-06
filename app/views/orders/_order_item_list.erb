@@ -3,15 +3,14 @@
       <tr>
         <th>Name</th>
         <th>Quantity</th>
-        <th>Price</th>
-        <th>Total Price</th>
-        <th colspan="4"></th>
+        <th>Price(For One)</th>
+        <th>Total Price</th>  
     </tr></thead>
     <tbody>
       <% items.each do |item| %>
       <tr>
         <td><%= item.name %></td>
-        <td><%= item.quantity %></td>
+        <td>x<%= item.quantity %></td>
         <td>₹ <%= item.price %></td>
         <td>₹ <%= item.price * item.quantity %></td>
       </tr>

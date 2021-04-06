@@ -1,11 +1,19 @@
 <h1 class="mt-5">Order #<%= @order.id %></h1>
 <h3 class="mb-5 text-muted"><%= @order.user_email %></h3>
 
-<p class="lead mt-5 mb-3" style="font-size: 20px;"><strong>Status:</strong> <%= @order.delivered ? "Delivered" : "Pending Delivery" %></p>
+<div class="ui <%= @order.delivered ? "green" : "yellow" %> message">
+    <p class="text-muted" style="font-size: 17px;"><strong>Status - </strong> <%= @order.delivered ? "Delivered" : "Pending Delivery" %></p>
+</div>
+<div class="ui message mb-4">
+    <p class="text-muted" style="font-size: 17px;"><strong>Ordered @ </strong> <%= "#{@order.created_at.day}/#{@order.created_at.month}/#{@order.created_at.year} | #{@order.created_at.strftime('%T')}" %></p>
+    <% if @order.delivered %>
+    <p class="text-muted mt-2" style="font-size: 17px;"><strong>Delivered @</strong> <%= "#{@order.updated_at.day}/#{@order.updated_at.month}/#{@order.updated_at.year} @ #{@order.updated_at.strftime("%T")}" %></p>
+    <% end %>
+</div>
 <%= render 'order_item_list', items: @order.order_items %>
 
 <p class="lead my-5" style="font-size: 25px;">Total Price: ₹ <%= @order.total_price %></p>
 
 <% if current_user.admin? || current_user.clerk? %>
-<%= link_to @order.delivered ? "Mark as Pending" : "Mark as Delivered", @order.delivered ? order_not_deliver_path(@order.id) : order_deliver_path(@order.id), method: :put, style: "text-decoration: none", class: "ui button" %>
+    <%= link_to @order.delivered ? "Mark as Pending" : "Mark as Delivered", @order.delivered ? order_not_deliver_path(@order.id) : order_deliver_path(@order.id), method: :put, style: "text-decoration: none", class: "ui secondary button" %>
 <% end %>

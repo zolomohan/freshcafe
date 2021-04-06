@@ -47,7 +47,7 @@ class OrdersController < ApplicationController
         order.delivered = true
         if order.save
             flash[:success] = "Order Delivered Successfully"
-            redirect_to orders_path
+            redirect_to ontroller: 'orders', action: 'show', id: order.id
         else
             render :index
         end
@@ -59,7 +59,7 @@ class OrdersController < ApplicationController
         order.delivered = false
         if order.save
             flash[:success] = "Order marked as Not Delivered"
-            redirect_to orders_path
+            redirect_to ontroller: 'orders', action: 'show', id: order.id
         else
             render :index
         end

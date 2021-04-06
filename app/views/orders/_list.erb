@@ -18,7 +18,7 @@
       <td><%= "#{order.created_at.day}/#{order.created_at.month}/#{order.created_at.year}" %></td>
       <td><%= order.user_email %></td>
       <td>₹ <%= order.total_price %></td>
-      <td><%= order.delivered ? "Delivered - #{order.updated_at.day}/#{order.updated_at.month}/#{order.updated_at.year}" : "Pending" %></td>
+      <td><%= order.delivered ? "Delivered" : "Pending" %></td>
       <% if current_user.admin? || current_user.clerk? %>
         <td><%= link_to order.delivered ? "Mark as Pending" : "Mark as Delivered", order.delivered ? order_not_deliver_path(order.id) : order_deliver_path(order.id), method: :put, style: "text-decoration: none" %></td>
       <% end %>
