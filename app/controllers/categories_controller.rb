@@ -15,7 +15,7 @@ class CategoriesController < ApplicationController
   # GET /categories/1 or /categories/1.json
   def show
     if !@category.active
-      flash_message = "This category is deacticated for now."
+      flash_message = "This category is deactivated for now."
       flash[:notice] = flash_message + (current_user.admin ? "" : " Come back Later!")
       redirect_to categories_path
     end

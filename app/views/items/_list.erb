@@ -23,10 +23,23 @@
         </div>
         
       </div>
+
+      <% is_deactivated = false %>
+      <% item.category.each_with_index do |category, index|%>
+          <% if !category.active %>
+            <% is_deactivated = true %>
+          <% end %>
+        <% end %>
       
       <%if user_signed_in?%>
+      <% if is_deactivated %>
+        <div class="ui button disabled">
+          Not Available
+        </div>
+      <% else %>
         <% is_add_cart_action = item.cart_action(current_user.id) == "Add to" %>
-        <%=link_to "#{item.cart_action(current_user.id)} Cart", is_add_cart_action ? add_to_cart_path(item) : remove_from_cart_path(item), method: :put, class: is_add_cart_action ? "ui button" : "ui negative button" %>
+        <%=link_to "#{item.cart_action(current_user.id)} Cart", is_add_cart_action ? add_to_cart_path(item) : remove_from_cart_path(item), method: :put, class: is_add_cart_action ? "ui button" : "ui orange button" %>
+      <% end %>
       <%end%>
     </div>
   <% end %>
