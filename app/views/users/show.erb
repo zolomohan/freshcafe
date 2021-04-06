@@ -26,7 +26,10 @@
 <% if @user.orders.count == 0 %>
     <p class="lead text-muted mt-4">No Orders Yet!</p>
 <% else %>
-    <%= render 'orders/list', orders: @user.orders %>
+    <%= render 'orders/list', orders: @user_orders %>
+    <div class="my-5 pb-5">
+        <%= will_paginate @user_orders, renderer: WillPaginateSemanticUi::ActionView::Renderer %>
+    </div>
 <% end %>
 
 <% if @user.id == current_user.id && user_signed_in? %>

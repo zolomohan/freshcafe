@@ -9,7 +9,7 @@ class UsersController < ApplicationController
     end
 
     def show
-
+        @user_orders = @user.orders.paginate(page: params[:page], per_page: 12)
     end
 
     def make_admin
