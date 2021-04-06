@@ -5,4 +5,7 @@
     <p class="lead text-muted">No Deactivated Categories</p>
 <% else %>
     <%= render 'list', items:@categories %>
+    <div class="my-5 pb-5">
+        <%= will_paginate renderer: WillPaginateSemanticUi::ActionView::Renderer %>
+    </div>
 <% end %>

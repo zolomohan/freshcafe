@@ -5,3 +5,7 @@
 <hr class="mb-5">
 
 <%= render 'list', items:@categories %>
+
+<div class="my-5 pb-5">
+    <%= will_paginate renderer: WillPaginateSemanticUi::ActionView::Renderer %>
+</div>

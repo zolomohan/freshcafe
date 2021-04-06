@@ -5,15 +5,20 @@ class CategoriesController < ApplicationController
 
   # GET /categories or /categories.json
   def index
-    @categories = Category.where(active: true)
+    @categories = Category.where(active: true).paginate(page: params[:page], per_page: 8)
   end
 
   def deactivated_index
-    @categories = Category.where(active: false)
+    @categories = Category.where(active: false).paginate(page: params[:page], per_page: 8)
   end
 
   # GET /categories/1 or /categories/1.json
   def show
+    if !@category.active
+      flash_message = "This category is deacticated for now."
+      flash[:notice] = flash_message + (current_user.admin ? "" : " Come back Later!")
+      redirect_to categories_path
+    end
   end
 
   # GET /categories/new
