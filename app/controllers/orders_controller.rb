@@ -4,8 +4,8 @@ class OrdersController < ApplicationController
     before_action :require_admin, only: [:report]
 
     def index
-        @pending_orders = Order.where(delivered: false)
-        @delivered_orders = Order.where(delivered: true)
+        @pending_orders = Order.where(delivered: false).paginate(page: params[:pending_page], per_page: 10)
+        @delivered_orders = Order.where(delivered: true).paginate(page: params[:delivered_page], per_page: 10)
     end
 
     def report
