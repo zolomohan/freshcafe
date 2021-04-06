@@ -6,7 +6,9 @@
       <th>User</th>
       <th>Bill Amount</th>
       <th>Delivery Status</th>
-      <th>Update Delivery Status</th>
+      <% if current_user.admin? || current_user.clerk? %>
+        <th>Update Delivery Status</th>
+      <% end %>
     </tr>
   </thead>
   <tbody>
@@ -14,7 +16,7 @@
     <tr>
       <td><%= link_to "##{order.id}", "/orders/#{order.id}" %></td>
       <td><%= "#{order.created_at.day}/#{order.created_at.month}/#{order.created_at.year}" %></td>
-      <td><%= order.user.email %></td>
+      <td><%= order.user_email %></td>
       <td>₹ <%= order.total_price %></td>
       <td><%= order.delivered ? "Delivered - #{order.updated_at.day}/#{order.updated_at.month}/#{order.updated_at.year}" : "Pending" %></td>
       <% if current_user.admin? || current_user.clerk? %>
