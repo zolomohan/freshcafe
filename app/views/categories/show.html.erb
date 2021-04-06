@@ -1,4 +1,8 @@
 <h1 class="mt-4 "><%= "#{@category.name} (#{@category.items.count})" %></h1>
 <hr class="mb-5">
 
-<%= render 'items/list', items:@category.items %>
+<%= render 'items/list', items:@category_items %>
+
+<div class="my-5 pb-5">
+    <%= will_paginate @category_items, renderer: WillPaginateSemanticUi::ActionView::Renderer %>
+</div>

@@ -19,6 +19,7 @@ class CategoriesController < ApplicationController
       flash[:notice] = flash_message + (current_user.admin ? "" : " Come back Later!")
       redirect_to categories_path
     end
+    @category_items = @category.items.paginate(page: params[:page], per_page: 8)
   end
 
   # GET /categories/new
