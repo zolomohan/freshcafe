@@ -21,6 +21,10 @@ Rails.application.routes.draw do
   end
 
   resources :categories
+
+  put 'deactivate/:id', to:  "categories#deactivate", as: "category_deactivate"
+  put 'activate/:id', to: "categories#activate", as: "category_activate"
+
   get 'deactivated_categories', to: "categories#deactivated_index"
 
   resources :items, except: [:show]

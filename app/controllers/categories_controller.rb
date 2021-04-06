@@ -12,6 +12,26 @@ class CategoriesController < ApplicationController
     @categories = Category.where(active: false).paginate(page: params[:page], per_page: 8)
   end
 
+  def deactivate
+    @category = Category.find(params[:id])
+    @category.active = false
+    if @category.save
+      redirect_to categories_path
+    else
+      render :index
+    end
+  end
+
+  def activate
+    @category = Category.find(params[:id])
+    @category.active = true
+    if @category.save
+      redirect_to categories_path
+    else
+      render :index
+    end
+  end
+
   # GET /categories/1 or /categories/1.json
   def show
     if !@category.active
