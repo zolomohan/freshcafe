@@ -36,11 +36,11 @@ A user must be converted to a Billing Clerk by the admin.
 
 ## Admin
 
-The admin has complete control over the application and its data.
+The admin has complete control over the application and its data. The first admin must be created from the Database terminal.
 
-- The admin can create new items.
+- The admin can create, edit and delete items.
 
-- The admin can create new categories.
+- The admin can create, edit and delete categories.
 
 - The admin can view all the users in the application.
 
