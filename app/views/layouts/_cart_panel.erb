@@ -9,22 +9,21 @@
       <% cart_items.each do |cart_item| %>
         <div class="item">
           <div class="left">
-            <div class="name"><%= cart_item[:item].name%></div>
-            <div class="quantity text-muted">Quantity: <%= cart_item[:quantity]%></div>
-            <div id="item-actions" class="mt-2 ui circular labels">
-              <%=link_to increase_quantity_cart_path(cart_item[:item]), method: :put, class: "me-2 ui green label", style: "text-decoration: none" do %>
-                <i class="fas fa-plus"></i>
+            <div class="name" style="font-size: 17px;"><%= cart_item[:item].name%> (x<%= cart_item[:quantity]%>)</div>
+            <div id="item-actions" class="mt-2 d-flex ui circular labels">
+              <%=link_to increase_quantity_cart_path(cart_item[:item]), method: :put do %>
+                <i class="fas fa-plus ui green label me-1"></i>
               <% end %>
-              <%=link_to decrease_quantity_cart_path(cart_item[:item]), method: :put, class: "me-2 ui green label", style: "text-decoration: none" do %>
-                <i class="fas fa-minus"></i>
+              <%=link_to decrease_quantity_cart_path(cart_item[:item]), method: :put do %>
+                <i class="fas fa-minus ui green label me-3"></i>
               <% end %>
-              <%=link_to remove_from_cart_path(cart_item[:item]), method: :put, class: "button ui negative label", style: "text-decoration: none" do %>
-                <i class="fas fa-times"></i>
+              <%=link_to remove_from_cart_path(cart_item[:item]), method: :put do %>
+                <i class="fas fa-times ui circular orange label"></i>
               <% end %>
             </div>
           </div>
           <div class="price text-muted">
-            ₹ <%= cart_item[:item].price%>
+            ₹ <%= cart_item[:item].price * cart_item[:quantity].to_i %>
           </div>
           
         </div>

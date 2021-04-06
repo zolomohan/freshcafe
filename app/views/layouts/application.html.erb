@@ -64,7 +64,7 @@
 
     $('.panel .header').click(() => {
       let is_panel_minimized = $(".panel").css('height') === "70px";
-      if (is_panel_minimized) openPanel();
+      is_panel_minimized ? openPanel() : closePanel();
     })
 
     $('#toggle-panel').click(() => {
