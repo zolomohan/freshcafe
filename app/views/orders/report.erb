@@ -13,5 +13,8 @@
 <p class="lead text-muted">Select "From Date" and "To Date" and Click Fetch.</p>
 <% else %>
 <%= render 'list', orders:@orders %>
+<div class="my-5 pb-5">
+    <%= will_paginate @orders, renderer: WillPaginateSemanticUi::ActionView::Renderer %>
+</div>
 <h2 class="my-5">Total Sales: ₹ <%= @orders.reduce(0) {|sum, order| sum + order.total_price} %></h2>
 <% end %>

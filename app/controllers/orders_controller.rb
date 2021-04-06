@@ -17,7 +17,7 @@ class OrdersController < ApplicationController
         else
             @from = Date.strptime(params[:from], '%Y-%m-%d')
             @to = Date.strptime(params[:to], '%Y-%m-%d')
-            @orders = Order.where(created_at: @from..@to)
+            @orders = Order.where(created_at: @from..@to).paginate(page: params[:page], per_page: 10)
         end
     end
 
