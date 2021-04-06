@@ -1,5 +1,5 @@
 <h1 class="mt-4 ">Categories</h1>
-<% if current_user.admin? %>
+<% if user_signed_in? && current_user.admin? %>
     <%= link_to "View Deactivated Categories", deactivated_categories_path, style: "text-decoration: none" %>
 <% end %>
 <hr class="mb-5">

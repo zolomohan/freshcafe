@@ -31,6 +31,7 @@
       <div class="px-5">
         <% if notice %>
         <div class="ui message transition mt-4">
+          <i class="close icon"></i>
           <p><%= notice %></p>
         </div>
         <% end %>
@@ -71,5 +72,14 @@
       let is_panel_minimized = $(".panel").css('height') === "70px";
       is_panel_minimized ? openPanel() : closePanel();
     })
+
+    $('.message .close')
+    .on('click', function() {
+      $(this)
+        .closest('.message')
+        .transition('fade')
+      ;
+    })
+  ;
   </script>
 </html>
