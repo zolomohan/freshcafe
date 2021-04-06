@@ -6,7 +6,7 @@ This application also uses Redis to maintain the User's cart information. Instal
 
 # About
 
-Freshcafe is a cafeteria management application build on Rails.
+Freshcafe is a cafeteria management application built on Rails.
 
 The application supports 3 user roles:
 
