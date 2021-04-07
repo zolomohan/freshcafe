@@ -7,6 +7,7 @@ class Item < ApplicationRecord
     validates :name, presence: true, length: {minimum: 3, maximum: 30}
     validates :description, presence: true
     validates :price, presence: true
+    validates :quantity, presence: true
     
     def cart_action(current_user_id)
         if $redis.sismember "cart#{current_user_id}", id
