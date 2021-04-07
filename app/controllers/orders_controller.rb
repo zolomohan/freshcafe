@@ -49,7 +49,7 @@ class OrdersController < ApplicationController
             order.total_price = total_price
             order.save
 
-            clear_cart
+            helpers.clear_cart
             redirect_to controller: 'orders', action: 'show', id: order.id
         end
     end
@@ -81,9 +81,5 @@ class OrdersController < ApplicationController
     private
     def order_params
         params.require(:items)
-    end
-
-    def current_user_cart
-        "cart#{current_user.id}"
     end
 end
