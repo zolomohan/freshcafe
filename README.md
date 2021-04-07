@@ -70,4 +70,4 @@ The admin has complete control over the application and its data. The first admi
 
 ### Admin Report
 
-![Report](/screenshots/report.png) 
+![Report](/screenshots/report_view.png) 
