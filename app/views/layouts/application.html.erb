@@ -29,31 +29,7 @@
     
     <div class="main">
       <div class="px-5">
-        <% if flash[:list] %>
-          <div class="ui message transition mt-4">
-            <div class="header">
-              Something went Wrong!
-            </div>
-          <i class="close icon me-2"></i>
-            <ul class="list">
-              <% flash[:list].each do |msg| %>
-                <li>
-                  <%= msg %>
-                </li>
-              <% end %>
-            </ul>
-          </div>
-          
-        <% end %>
-        <% if notice %>
-        <div class="ui message transition mt-4">
-          <i class="close icon me-2"></i>
-          <div class="header">
-            Notice
-          </div>
-          <p><%= notice %></p>
-        </div>
-        <% end %>
+        <%= render 'layouts/messages' %>
         <%= yield %>
       </div>
     </div>
