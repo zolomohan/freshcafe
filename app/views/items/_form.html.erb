@@ -36,6 +36,11 @@
   <div class="mt-4">
     <%= form.file_field :main_image %>
   </div>
+
+  <div class="ui checkbox mt-3">
+    <%= form.check_box :active %>
+    <%= form.label :active %>
+  </div>
   
   <div class="actions">
     <%= form.submit class: "ui secondary button mt-4" %>

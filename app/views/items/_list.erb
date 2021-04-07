@@ -24,7 +24,7 @@
         
       </div>
 
-      <% is_deactivated = false %>
+      <% is_deactivated = !item.active %>
       <% item.category.each_with_index do |category, index|%>
           <% if !category.active %>
             <% is_deactivated = true %>
