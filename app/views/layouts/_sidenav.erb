@@ -8,7 +8,7 @@
         <%= link_to "All Items", root_path %>
         <h2>Categories</h2>
         <% Category.where(active: true).limit(10).each do |category| %>
-        <%= link_to category.name, category_path(category.id) %>
+            <%= link_to category.name, category_path(category.id) %>
         <% end %>
         <div id="more-categories">
             <%= link_to "More", categories_path %>

@@ -15,9 +15,13 @@
         <%= link_to "View Delivered Orders", delivered_orders_path, class: "ui secondary button" %>
         <%= link_to "Edit Account", edit_account_path, class: "ui secondary button" %>
     <% else %>
-        <h2 class="mt-5"><%= current_user.email %></h2>
-        <hr>
-        <%= link_to "Edit Account", edit_account_path, class: "ui secondary button" %>
+    <div class="d-flex" style="align-items: center;">
+        <h2 class="mt-4"><%= current_user.email %></h2>
+        <%= link_to edit_account_path do %>
+            <i class="fas fa-edit text-muted mt-4 ms-3  " style="font-size: 18px;"></i>
+        <% end %>
+    </div>
+    <hr>
     <% end %>
 <% else %>
     <h2 class="mt-5"><%= "Admin: " if @user.admin? %><%= "Staff: " if @user.clerk? && !@user.admin %> <span class="text-muted"><%= @user.email %></span></h2>
