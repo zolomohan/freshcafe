@@ -10,22 +10,21 @@
         <div class="item">
           <div class="left">
             <div class="name" style="font-size: 17px;"><%= cart_item[:item].name%> (x<%= cart_item[:quantity]%>)</div>
-            <div id="item-actions" class="mt-2 d-flex ui circular labels">
-              <%=link_to increase_quantity_cart_path(cart_item[:item]), method: :put do %>
-                <i class="fas fa-plus ui green label me-1"></i>
+            <div id="item-actions" class="mt-2 d-flex ui labels">
+              <%=link_to increase_quantity_cart_path(cart_item[:item]), method: :put, title: "Increase 1" do %>
+                <i class="fas fa-plus ui label me-1"></i>
               <% end %>
-              <%=link_to decrease_quantity_cart_path(cart_item[:item]), method: :put do %>
-                <i class="fas fa-minus ui green label me-3"></i>
+              <%=link_to decrease_quantity_cart_path(cart_item[:item]), method: :put, title: "Decrease 1" do %>
+                <i class="fas fa-minus ui label me-3"></i>
               <% end %>
-              <%=link_to remove_from_cart_path(cart_item[:item]), method: :put do %>
-                <i class="fas fa-times ui circular orange label"></i>
+              <%=link_to remove_from_cart_path(cart_item[:item]), method: :put, title: "Remove Item" do %>
+                <i class="fas fa-times ui orange label"></i>
               <% end %>
             </div>
           </div>
           <div class="price text-muted">
             ₹ <%= cart_item[:item].price * cart_item[:quantity].to_i %>
           </div>
-          
         </div>
         <hr>
       <% end %>
