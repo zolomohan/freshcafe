@@ -6,10 +6,10 @@
       <div class="content">
         <% if user_signed_in? && current_user.admin? %>
           <%= link_to item_path(item), method: :delete do %>
-          <i class="right floated fas fa-times icon" style="text-decoration: none; color: #222;"></i>
+          <i class="right floated fas fa-times icon" style="text-decoration: none; color: #aaa;"></i>
           <% end %>
           <%= link_to edit_item_path(item) do %>
-            <i class="right floated fas fa-pencil-alt icon" style="text-decoration: none; color: #222;"></i>
+            <i class="right floated fas fa-edit icon" style="text-decoration: none; color: #aaa;"></i>
           <% end %>
         <% end %>
         <div class="header"><%= item.name %></div>

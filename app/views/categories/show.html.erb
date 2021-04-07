@@ -1,4 +1,11 @@
-<h1 class="mt-4 "><%= "#{@category.name} (#{@category.items.count})" %></h1>
+<div class="d-flex" style="align-items: center">
+    <h1 class="mt-4 "><%= "#{@category.name} (#{@category.items.count})" %></h1>
+    <% if user_signed_in? && current_user.admin? %>
+        <%= link_to edit_category_path(@category), class: "text-muted", style: "text-decoration: none" do %>
+            <i class="fas fa-edit mt-4 ms-3" style="font-size: 20px;"></i>
+        <% end %>
+    <% end %>
+</div>
 <hr class="mb-5">
 
 <%= render 'items/list', items:@category_items %>
