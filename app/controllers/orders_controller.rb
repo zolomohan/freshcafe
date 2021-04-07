@@ -27,10 +27,9 @@ class OrdersController < ApplicationController
 
     def create
         order_items_data = JSON.parse(order_params)
-        items_valid = helpers.are_all_items_valid(order_items_data)
-
-        if !items_valid
-            flash[:notice] = "Some Items in your cart are not available."
+        items_valid_messages = helpers.are_items_valid(order_items_data)
+        if items_valid_messages.count != 0
+            flash[:list] = items_valid_messages
             redirect_to root_path
         else
             order = Order.new(user: current_user, user_email: current_user.email)
