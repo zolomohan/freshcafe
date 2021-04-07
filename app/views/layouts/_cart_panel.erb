@@ -36,7 +36,7 @@
     <p class="lead mb-3 pt-3" style="font-size: 20px;">Total Price: ₹ <%= cart_items.reduce(0)  {|sum, cart_item| sum + (cart_item[:item].price * cart_item[:quantity].to_i) } %></p>
     <% order_create_params = [] %>
     <% cart_items.each do |cart_item| %>
-      <% order_create_params.push({:id => cart_item[:item].id, :name => cart_item[:item].name, :price => cart_item[:item].price, :quantity => cart_item[:quantity]}) %>
+      <% order_create_params.push({:id => cart_item[:item].id, :quantity => cart_item[:quantity]}) %>
     <% end %>
     <%= button_to "Proceed to Checkout", order_path, params: {items: order_create_params.to_json}, class: "ui secondary button d-none", id: "checkout-button", style: "width: 100%"%>
   </div>

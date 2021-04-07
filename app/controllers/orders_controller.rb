@@ -26,40 +26,29 @@ class OrdersController < ApplicationController
     end
 
     def create
-        order = Order.new(user: current_user, user_email: current_user.email)
         order_items_data = JSON.parse(order_params)
-        order.total_price = order_items_data.reduce(0) {|sum, item| sum + (item["price"] * item["quantity"].to_i) }
-        
-        # Check if all the items in the cart are active.
-        are_all_items_valid = true
-        order_items_data.each do |item|
-            item_db = Item.find(item["id"])
-            if !item_db.active
-                are_all_items_valid = false
-                break
-            end
+        items_valid = helpers.are_all_items_valid(order_items_data)
 
-            item_db.category.each do |category|
-                if !category.active
-                    are_all_items_valid = false
-                    break
-                end
-            end
-
-            if !are_all_items_valid
-                break
-            end
-        end
-
-        if !are_all_items_valid
+        if !items_valid
             flash[:notice] = "Some Items in your cart are not available."
             redirect_to root_path
         else
+            order = Order.new(user: current_user, user_email: current_user.email)
             order.save
+
+            total_price = 0
             order_items_data.each do |item| 
-                order_item = OrderItem.new(name: item["name"], price: item["price"], quantity: item["quantity"], order_id: order.id, item_id: item["id"])
+                item_db = Item.find(item["id"])
+                item_db.quantity = item_db.quantity - item["quantity"].to_i
+                item_db.save
+                total_price = total_price + (item_db.price * item["quantity"].to_i)
+                order_item = OrderItem.new(name: item_db.name, price: item_db.price, quantity: item["quantity"], order_id: order.id, item_id: item["id"])
                 order_item.save
             end
+
+            order.total_price = total_price
+            order.save
+
             clear_cart
             redirect_to controller: 'orders', action: 'show', id: order.id
         end
