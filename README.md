@@ -52,22 +52,22 @@ The admin has complete control over the application and its data. The first admi
 
 # Screenshots
 
-## Home
+### Home
 
 ![Home](/screenshots/home.png)
 
-## Cart
+### Cart
 
 ![Cart](/screenshots/cart.png)
 
-## Categories (Admin View)
+### Categories (Admin View)
 
 ![Categories](/screenshots/categories.png)
 
-## Pending Orders
+### Pending Orders
 
 ![Pending Delivery](/screenshots/pending.png)
 
-## Admin Report
+### Admin Report
 
 ![Report](/screenshots/report.png) 
