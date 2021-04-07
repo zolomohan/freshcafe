@@ -58,7 +58,7 @@ The admin has complete control over the application and its data. The first admi
 
 ### Cart
 
-![Cart](/screenshots/cart.png)
+![Cart](/screenshots/cart_view.png)
 
 ### Categories (Admin View)
 
