@@ -1,11 +1,18 @@
 class ApplicationController < ActionController::Base
-  helper_method :require_login, :require_admin, :require_clerk, :current_user_cart, :get_cart_items
+  helper_method :require_login, :require_admin, :require_clerk, :current_user_cart, :get_cart_items, :clear_cart
 
   def get_cart_items
     cart_ids = $redis.smembers current_user_cart
     @cart_items = Item.find(cart_ids)
     @quantities = cart_ids.map {|item| $redis.get current_user_cart+item}
     @items = cart_ids.each_with_index.map {|id, index| {:item => @cart_items[index], :quantity => @quantities[index]} }
+  end
+
+  def clear_cart
+    item_ids = $redis.smembers current_user_cart
+    redis_keys = item_ids.map {|id| "#{current_user_cart}#{id}"}
+    redis_keys.push(current_user_cart)
+    $redis.del(redis_keys)
   end
 
   def require_login

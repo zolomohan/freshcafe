@@ -30,7 +30,7 @@ class OrdersController < ApplicationController
         order_items_data = JSON.parse(order_params)
         order.total_price = order_items_data.reduce(0) {|sum, item| sum + (item["price"] * item["quantity"].to_i) }
         
-        # Check for Invalid Items
+        # Check if all the items in the cart are active.
         are_all_items_valid = true
         order_items_data.each do |item|
             item_db = Item.find(item["id"])
@@ -52,7 +52,7 @@ class OrdersController < ApplicationController
         end
 
         if !are_all_items_valid
-            flash[:notice] = "Some Items in your cart are not availble."
+            flash[:notice] = "Some Items in your cart are not available."
             redirect_to root_path
         else
             order.save
@@ -60,10 +60,7 @@ class OrdersController < ApplicationController
                 order_item = OrderItem.new(name: item["name"], price: item["price"], quantity: item["quantity"], order_id: order.id, item_id: item["id"])
                 order_item.save
             end
-            item_ids = $redis.smembers current_user_cart
-            redis_keys = item_ids.map {|id| "#{current_user_cart}#{id}"}
-            redis_keys.push(current_user_cart)
-            $redis.del(redis_keys)
+            clear_cart
             redirect_to controller: 'orders', action: 'show', id: order.id
         end
     end
